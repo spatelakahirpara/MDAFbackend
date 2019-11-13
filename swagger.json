@@ -1,0 +1,224 @@
+{
+    "swagger": "2.0",
+     "info":{
+         "title":"DevOps ToolChain APIs",
+         "description":"Here you can get description of DevOps Tool Chain APIs",
+         "servers":{
+            "url": "http://localhost:3000/",
+            "description": "Local server"
+          }
+     },
+     "definitions":{
+        "Stages":{
+            "type":"array",
+            "items":{
+                
+                "properties":{
+                    "Stage":{
+                        "type":"String"
+                    }
+                }
+            }
+
+        },
+        "SubSection":{
+            "type":"array",
+            "items":{
+                
+                "properties":{
+                    
+                    "SubSection":{
+                      "type":"String"
+                    },
+                    "route":{
+                      "type":"String"
+                    },
+                    "stage":{
+                      "type":"String"
+                    }
+                }
+            }
+
+        },
+        "Tools":{
+          "type":"array",
+          "items":{
+              
+              "properties":{
+                  "Tool":{
+                      "type":"String"
+                  },
+                  "SubSection":{
+                      "type":"String"
+                  },
+                  "Stage":{
+                      "type":"String"
+                  }
+              }
+          }
+
+      }
+
+     },
+  
+     
+      "paths": {
+        "/api/toolchain": {
+          "get": {
+            "tags": ["Get the DevOps Stages"],
+            "description": "Get all the Stages of DevOps",
+            "operationId": "getStages",
+            
+            "responses": {
+              "200": {
+                "description": "all the DevOps stages",
+                "schema":{
+                    
+                    "$ref": "#/definitions/Stages"
+                },
+                "content": {
+                  "application/json": {
+                    
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/Plan":{
+          "get": {
+              "tags": ["Get the SubSection of the Stages"],
+              "description": "Get all the SubSection of DevOps Stages",
+              "operationId": "getSubsection",
+              
+              "responses": {
+                "200": {
+                  "description": "List of all the SubSection",
+                  "schema":{
+                  
+                      "$ref": "#/definitions/SubSection"
+                  },
+                  "content": {
+                    "application/json": {
+                      
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/api/Create":{
+            "get": {
+                "tags": ["Get the SubSection of the Stages"],
+                "description": "Get all the SubSection of DevOps Stages",
+                "operationId": "getSubsection",
+                
+                "responses": {
+                  "200": {
+                    "description": "List of all the SubSection",
+                    "schema":{
+                    
+                        "$ref": "#/definitions/SubSection"
+                    },
+                    "content": {
+                      "application/json": {
+                        
+                      }
+                    }
+                  }
+                }
+              }
+        },
+        "/api/Verify":{
+          "get": {
+              "tags": ["Get the SubSection of the Stages"],
+              "description": "Get all the SubSection of DevOps Stages",
+              "operationId": "getSubsection",
+              
+              "responses": {
+                "200": {
+                  "description": "List of all the SubSection",
+                  "schema":{
+                  
+                      "$ref": "#/definitions/SubSection"
+                  },
+                  "content": {
+                    "application/json": {
+                      
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/api/Plan/task":{
+          "get": {
+              "tags": ["Get the Tools of the SubSection"],
+              "description": "Get all the Tools of a SubSection",
+              "operationId": "getTools",
+              
+              "responses": {
+                "200": {
+                  "description": "List of all the Tools",
+                  "schema":{
+                  
+                      "$ref": "#/definitions/Tools"
+                  },
+                  "content": {
+                    "application/json": {
+                      
+                    }
+                  }
+                }
+              }
+            }
+         },
+         "/api/Plan/bdd":{
+          "get": {
+              "tags": ["Get the Tools of the SubSection"],
+              "description": "Get all the Tools of a SubSection",
+              "operationId": "getTools",
+              
+              "responses": {
+                "200": {
+                  "description": "List of all the Tools",
+                  "schema":{
+                  
+                      "$ref": "#/definitions/Tools"
+                  },
+                  "content": {
+                    "application/json": {
+                      
+                    }
+                  }
+                }
+              }
+            }
+         },
+         "/api/Create/repository":{
+          "get": {
+              "tags": ["Get the Tools of the SubSection"],
+              "description": "Get all the Tools of a SubSection",
+              "operationId": "getTools",
+              
+              "responses": {
+                "200": {
+                  "description": "List of all the Tools",
+                  "schema":{
+                  
+                      "$ref": "#/definitions/Tools"
+                  },
+                  "content": {
+                    "application/json": {
+                      
+                    }
+                  }
+                }
+              }
+            }
+         }
+      
+        
+
+      }
+}
