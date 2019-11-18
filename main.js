@@ -10,6 +10,7 @@ const swaggerDefination= require('./swagger.json')
 const pageRouter = require("./routes/login.routes");
 const stackRouter = require("./routes/stack.routes");
 //const session = require('express-session');
+var logger= require('./config/logger.js');
 
 
 app.use((req,res,next)=>{
@@ -20,11 +21,11 @@ app.use((req,res,next)=>{
         res.sendStatus(200);
     }
     else{
-        console.log("request Recived");
         next();
     }
 });
 app.use(bodyParser.json());
+logger.info("loading the main file");
 
 // app.use(session({
 //     secret:'toolchain',

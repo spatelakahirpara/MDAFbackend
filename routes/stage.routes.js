@@ -2,12 +2,14 @@
 const express= require('express');
 const router= express.Router();
 const db= require('../models/stage.model');
+var logger= require('../config/logger.js');
+
 
 router.get('/api/toolchain',function(req,res,next){
-  let sql=`SELECT Stage from tblStage`;
+  let sql=`SELECT tblStage.Stage as stage from tblStage`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending all stages");
+    logger.info("sending all stages");
     
     res.send(data); 
 }); 
@@ -18,7 +20,7 @@ router.get('/api/Plan',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Plan"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending plan");
+    logger.info("sending plan");
     
     res.send(data); 
 }); 
@@ -29,7 +31,7 @@ router.get('/api/Create',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Create"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending create");
+    logger.info("sending create");
     
     res.send(data); 
 }); 
@@ -40,7 +42,7 @@ router.get('/api/Verify',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Verify"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending verify");
+    logger.info("sending verify");
     
     res.send(data); 
 }); 
@@ -51,7 +53,7 @@ router.get('/api/Verify',function(req,res,next){
 //   on (t.ID = s.ToolId)) where t.Stage= "Preproduction"`;
 //   db.query(sql,(err,data)=>{
 //     if(err) throw err;
-//     console.log("sending plan- task managenment data");
+//     logger.info("sending plan- task managenment data");
     
 //     res.send(data); 
 // }); 
@@ -62,7 +64,7 @@ router.get('/api/Release',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Release"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending release");
+    logger.info("sending release");
     
     res.send(data); 
 }); 
@@ -73,7 +75,7 @@ router.get('/api/Configure',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Configure"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending configure");
+    logger.info("sending configure");
     
     res.send(data); 
 }); 
@@ -84,7 +86,7 @@ router.get('/api/Containers',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Containers"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending containers");
+    logger.info("sending containers");
     
     res.send(data); 
 }); 
@@ -95,7 +97,7 @@ router.get('/api/Monitor',function(req,res,next){
   on (t.ID = s.ToolId)) where t.Stage= "Monitor"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending Monitor");
+    logger.info("sending Monitor");
     
     res.send(data); 
 }); 

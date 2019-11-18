@@ -2,7 +2,7 @@
 const express= require('express');
 const router= express.Router();
 const db= require('../models/stage.model');
-
+var logger= require('../config/logger.js');
 
 router.get('/api/Plan/task',function(req,res,next){
   let sql=`SELECT t.Stage as stage, s.SubSection as subsection, u.Tool as tools 
@@ -11,7 +11,7 @@ router.get('/api/Plan/task',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending plan- task managenment data");
+    logger.info("sending plan- task managenment data");
     
     res.send(data); 
 }); 
@@ -25,7 +25,7 @@ router.get('/api/Plan/bdd',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending plan- BDD data");
+    logger.info("sending plan- BDD data");
     
     res.send(data); 
 }); 
@@ -40,7 +40,7 @@ router.get('/api/Create/repository',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending create- repository data");
+    logger.info("sending create- repository data");
     
     res.send(data); 
 }); 
@@ -53,7 +53,7 @@ router.get('/api/Create/build',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending create- build data");
+    logger.info("sending create- build data");
     
     res.send(data); 
 }); 
@@ -66,7 +66,7 @@ router.get('/api/Create/ide',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending create- ide data");
+    logger.info("sending create- ide data");
     
     res.send(data); 
 }); 
@@ -79,7 +79,7 @@ router.get('/api/Verify/automation',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending verify - automation data");
+    logger.info("sending verify - automation data");
     
     res.send(data); 
 }); 
@@ -91,7 +91,7 @@ router.get('/api/Verify/security',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending verify - tblSecurity data");
+    logger.info("sending verify - tblSecurity data");
     
     res.send(data); 
 }); 
@@ -103,7 +103,7 @@ router.get('/api/Verify/management',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending verify - management data");
+    logger.info("sending verify - management data");
     
     res.send(data); 
 }); 
@@ -115,7 +115,7 @@ router.get('/api/Verify/quality',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending verify - code_quality data");
+    logger.info("sending verify - code_quality data");
     
     res.send(data); 
 }); 
@@ -127,7 +127,7 @@ router.get('/api/Verify/verification',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending verify - verification data");
+    logger.info("sending verify - verification data");
     
     res.send(data); 
 }); 
@@ -141,21 +141,21 @@ router.get('/api/Release/deploy',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending release - deploy data");
+    logger.info("sending release - deploy data");
     
     res.send(data); 
 }); 
 });
 
 //----------------------------------configure-------------------------------------------
-router.get('/api/Configure/automation',function(req,res,next){ 
+router.get('/api/Configure/configuration',function(req,res,next){ 
   let sql= `SELECT t.Stage as stage, s.SubSection as subsection, u.Tool as tools 
   FROM ( tblStage as t join tblSubSection as s join tblTools as u 
-  on (t.ID = s.ToolId  and s.ID = u.SubCategoryId)) where s.Route= "automation"`;
+  on (t.ID = s.ToolId  and s.ID = u.SubCategoryId)) where s.Route= "configuration"`;
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending release - automation data");
+    logger.info("sending release - automation data");
     
     res.send(data); 
 }); 
@@ -168,7 +168,7 @@ router.get('/api/Containers/getContainers',function(req,res,next){
   on (t.ID = s.ToolId  and s.ID = u.SubCategoryId)) where s.Route= "getContainers"`;
   db.query(sql,(err,data)=>{
     if(err) throw err;
-    console.log("sending release - get_containers data");
+    logger.info("sending release - get_containers data");
     
     res.send(data); 
 }); 
@@ -181,7 +181,7 @@ router.get('/api/Monitor/analytics',function(req,res,next){
   db.query(sql,(err,data)=>{
         
     if(err) throw err;
-    console.log("sending release - analytics data");
+    logger.info("sending release - analytics data");
     
     res.send(data); 
 }); 

@@ -1,8 +1,11 @@
 const express= require('express');
 const router = express.Router();
 const db= require('../models/stage.model');
-//var insertStack=
-        
+var insertStack=[{"Stage":"Plan", "SubSection":"task", "Tools":"Taiga"},{"Stage":"Plan", "SubSection":"bdd", "Tools":"Behat"}];
+const b= require('bcryptjs');
+var logger= require('../config/logger.js');
+
+        var json= JSON.stringify(insertStack);
 
   router.post('/api/review',function(req,res,next){
    
@@ -10,17 +13,18 @@ const db= require('../models/stage.model');
      //get the UserName from session
      db.query('select * from tblLogin where UserName=? ;', [req.body.UserName],(err,data)=>{
         if(err) throw logger.info(err);
+        
         else if(data === undefined || data.length == 0){
-            console.log("user does not exists");
+            logger.info("user does not exists");
             res.send({"Status":"404"})
         }
        else{
-        db.query(`UPDATE tblLogin SET Stack = '{"Stack": 
-        [{"Stage":"Plan", "SubSection":"task", "Tools":"Taiga"},
-        {"Stage":"Plan", "SubSection":"bdd", "Tools":"Behat"}]}' 
-        WHERE UserName = ?;`,[data[0].UserName],(err,result)=>{
+        logger.info(data[0]);
+        logger.info("id"+data[0].ID);
+        db.query(`INSERT INTO tblUserStack  VALUES(5,'{"Stack":?}',?);
+     `,[json,data[0].ID],(err,result)=>{
             if(err) throw err;
-            console.log(result);
+            logger.info(result);
             res.send(result);  
         });
        }
@@ -30,5 +34,5 @@ const db= require('../models/stage.model');
    
   module.exports= router;
 
-  //home page
+
   
