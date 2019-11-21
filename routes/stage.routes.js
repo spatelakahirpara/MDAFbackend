@@ -47,6 +47,11 @@ router.get('/api/Verify',function(req,res,next){
     res.send(data); 
 }); 
 }); 
+router.get('/api/Preproduction',function(req,res,next){
+    
+    res.send("future work"); 
+
+}); 
 // router.get('/api/release',function(req,res,next){
 //   let sql=`SELECT t.Stage as stage, s.SubSection as subsection
 //   FROM ( tblStage as t join tblSubSection as s  

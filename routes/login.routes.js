@@ -25,8 +25,6 @@ router.get('/',function(req,res,next){
             res.send({"Status":"404"})
         }
         else{
-       
-
             var hash= data[0].Password;
             var plainPassword = req.body.Password;
             if (data.length==0){
