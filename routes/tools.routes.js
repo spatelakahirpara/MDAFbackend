@@ -9,24 +9,18 @@ router.get('/api/Plan/task',function(req,res,next){
   FROM ( tblStage as t join tblSubSection as s join tblTools as u 
   on (t.ID = s.ToolId  and s.ID = u.SubCategoryId)) where s.Route= "task"`;
   db.query(sql,(err,data)=>{
-        
     if(err) throw err;
     logger.info("sending plan- task managenment data");
-    
     res.send(data); 
 }); 
- 
 });
 router.get('/api/Plan/bdd',function(req,res,next){
   let sql= `SELECT t.Stage as stage, s.SubSection as subsection, u.Tool as tools 
     FROM ( tblStage as t join tblSubSection as s join tblTools as u 
     on (t.ID = s.ToolId  and s.ID = u.SubCategoryId)) where s.Route= "bdd"`;
-  // let sql= 'SELECT t.Stage as stage, s.SubSection as subsection, u.Tool as tools FROM ( `tblStage` as t join `tblSubSection` as s join `tblTools` as u on (t.ID = s.ToolId  and s.ID = u.SubCategoryId)) where s.SubSection= "BDD"';
   db.query(sql,(err,data)=>{
-        
     if(err) throw err;
     logger.info("sending plan- BDD data");
-    
     res.send(data); 
 }); 
  
@@ -186,18 +180,5 @@ router.get('/api/Monitor/analytics',function(req,res,next){
     res.send(data); 
 }); 
 });
-
-
-// var x;
-// module.exports=function(app){
-//     x=app;
-//     var data = require('../controllers/toolchain.controller');
-
-//   // todoList Routes
-//   app.route('/tasks')
-//     .get(data.getData);
-    
-// }
-
 
 module.exports= router;   

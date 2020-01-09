@@ -1,4 +1,4 @@
-// //require winston
+//require winston
  var winston= require('winston');
 
 var options = {

@@ -20,11 +20,14 @@ router.get('/',function(req,res,next){
     db.query('select * from tblLogin where UserName=? ;', [req.body.UserName],(err,data)=>{
       
         if(err) throw logger.info(err);
-        else if(data === undefined || data.length == 0){
+        
+        else if(data[0] === undefined || data.length == 0){
+            
             logger.info("email does not exists");
-            res.send({"Status":"404"})
+            res.send({"StatusCode":"404"})
         }
         else{
+            
             var hash= data[0].Password;
             var plainPassword = req.body.Password;
             if (data.length==0){
@@ -43,7 +46,7 @@ router.get('/',function(req,res,next){
 
                     }
                     else {
-                        res.send({"Status":"404"});
+                        res.send({"StatusCode":"404"});
                     }
                 }); 
              }
@@ -70,3 +73,5 @@ router.get('/',function(req,res,next){
 
 
   
+
+ 

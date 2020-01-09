@@ -1,0 +1,102 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is an API Documentation created by Miracle Software Systems",
+    "version": "1.0.0",
+    "title": "MDAF APIs" 
+  },
+  "host": "mdaf.swagger.io",
+  "basePath": "/v2",
+
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/createRepository": {
+      "put": {
+        "summary": "Create a Repository in AWS ECR",
+        "description": "Create a Repository in AWS ECR by giving Repository name",
+        "operationId": "createRepository",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Name of the Repository that you want to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/createRepositoryRequest",
+              "examples":{
+                "repositoryName":"given"
+              }
+              
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/createRepositoryResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "InvalidParameterException: The specified parameter is invalid. Review the available parameters for the API request."
+          },
+          "500": {
+            "description": "ServerException: These errors are usually caused by a server-side issue."
+          }
+        }
+      }
+    }
+  },
+ 
+  "definitions": {
+    
+    "createRepositoryResponse": {
+      "type": "object",
+      "properties": {
+        "createdAt":{
+          "type": "number"
+        },
+        "imageScanningConfiguration": { 
+          "scanOnPush": {
+            "type": "boolean"
+          }
+       },
+       "imageTagMutability": {"type": "string"},
+       "registryId":{"type": "string"},
+       "repositoryArn": {"type":"string"},
+       "repositoryName":{"type": "string"},
+       "repositoryUri": {"type":"string"}
+      },
+      "xml": {
+        "name": "Pet"
+      }
+    },
+    "createRepositoryRequest": {
+      "type": "object",
+      "required": [
+        "repositoryName"
+      ],
+      "properties": {
+        "repositoryName":{
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Pet"
+      }
+    }
+  }
+  
+}
